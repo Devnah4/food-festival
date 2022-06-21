@@ -1,5 +1,7 @@
 // adds the path module
 const path = require("path");
+// adds the webpack module
+const webpack = require("webpack");
 
 // Creates the main configuration
 // not needed past version 4, but still allows for specificity
@@ -13,6 +15,15 @@ module.exports = {
         // sets the filename
         filename: 'main.bundle.js'
     },
+    // connects webpack to the plugins
+    plugins: [
+        // makes an exception for the variables
+        new webpack.ProvidePlugin({
+            // defines the plugin values
+            $: "jquery",
+            jQuery: "jquery"
+        }),
+    ],
     // Sets the mode webpack will run
     // default value will be production
     mode: 'development'
