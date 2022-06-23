@@ -1,13 +1,14 @@
-// adds the module for the webpack bundle analyzer
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-// adds the path module
-const path = require("path");
 // adds the webpack module
 const webpack = require("webpack");
+// adds the module for the webpack bundle analyzer
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// adds the path module
+const path = require("path");
+
 
 // Creates the main configuration
 // not needed past version 4, but still allows for specificity
-module.exports = {
+const config = {
     // Selects the item to be entered into webpack
     entry: {
         app: "./assets/js/script.js",
@@ -18,7 +19,7 @@ module.exports = {
     // bundles the inputs into a single file 
     output: {
         // Sets the location of output which should be in a dist folder
-        path: __dirname + '/dist',
+        path: path.join(__dirname + "/dist"),
         // sets the filename
         filename: '[name].bundle.js'
     },
@@ -27,7 +28,7 @@ module.exports = {
         rules: [
             {
                 // searches using REGEX for fils with the extension .jpg
-                test: /\.jpg$/i,
+                test: /\.(png|jp?g|gif)$/i,
                 use: [{
                     loader: 'file-loader',
                     options: {
@@ -37,7 +38,7 @@ module.exports = {
                             return "[path][name].[ext]"
                         },
                         // Sets the location of the output
-                        publicPath: function (url) {
+                        publicPath(url) {
                             return url.replace("../", "/assets/")
                         }
                     }
@@ -65,3 +66,4 @@ module.exports = {
     mode: 'development'
 }
 
+module.exports = config;
