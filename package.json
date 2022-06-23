@@ -6,7 +6,7 @@
   "scripts": {
     "webpack": "webpack --watch",
     "build": "webpack",
-    "start:dev": "webpack-dev-server",
+    "start:dev": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,11 +23,11 @@
   "devDependencies": {
     "@webpack-cli/serve": "^1.4.0",
     "file-loader": "^6.2.0",
-    "image-webpack-loader": "^8.1.0",
+    "image-webpack-loader": "^6.0.0",
     "webpack": "^5.37.1",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^4.9.2"
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
