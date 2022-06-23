@@ -2,6 +2,8 @@
 const webpack = require("webpack");
 // adds the module for the webpack bundle analyzer
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// adds the module for the webpack pwa manifest
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 // adds the path module
 const path = require("path");
 
@@ -59,6 +61,24 @@ const config = {
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: "static", // the report is sent to an HTML file in dist
+        }),
+        new WebpackPwaManifest({
+            name: "Food Event",
+            short_name: "Foodies",
+            description: "An app that allows you to view upcoming food events.",
+            // Sets the start point for the PWA to the location of the manifest
+            start_url: "../index.html",
+            background_color: "#01579b",
+            theme_color: "#ffffff",
+            // tells webpack not to create a unique fingerprint
+            fingerprints:  false,
+            // determines whether the link to manifest is added to the html
+            inject: false,
+            icons: [{
+                src: path.resolve("assets/img/icons/icon-512x512.png"),
+                sizes: [96, 128, 192, 256, 384, 512],
+                destination: path.join("assets", "icons")
+            }]
         })
     ],
     // Sets the mode webpack will run
